@@ -1,2 +1,8 @@
-package com.javaguides.ems.Repository;public interface EmployeeRepository {
+package com.javaguides.ems.Repository;
+
+import com.javaguides.ems.Entity.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+
 }
