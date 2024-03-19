@@ -23,12 +23,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee savedEmployee = employeeRepository.save(employee);
 
         return EmployeeMapper.mapToEmployeeDTO(savedEmployee);
-
     }
+
     @Override
     public EmployeeDTO getEmployeeId(Long employeeId) {
-       Employee employee = employeeRepository.findById(employeeId).orElseThrow(
-        () -> new ResourceNotFoundException("Funcionário não encontrado por meio de ID"));
+        Employee employee = employeeRepository.findById(employeeId).orElseThrow(
+            () -> new ResourceNotFoundException("Funcionário não encontrado por meio de ID"));
     return EmployeeMapper.mapToEmployeeDTO(employee);
     }
 
@@ -37,8 +37,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> employees = employeeRepository.findAll();
         return employees.stream().map((employee) -> EmployeeMapper.mapToEmployeeDTO(employee))
                 .collect(Collectors.toList());
-
     }
+
     @Override
     public EmployeeDTO updateEmployee(Long employeeId, EmployeeDTO updatedEmployee) {
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(
@@ -56,8 +56,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     Employee employee = employeeRepository.findById(employeeId).orElseThrow(
                 () -> new ResourceNotFoundException("Funcionário não encontrado por meio de ID:" + employeeId));
     employeeRepository.deleteById(employeeId);
-
-
     }
 
 
