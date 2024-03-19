@@ -2,6 +2,7 @@ package com.javaguides.ems.Service.Impl;
 
 import com.javaguides.ems.DTO.EmployeeDTO;
 import com.javaguides.ems.Entity.Employee;
+import com.javaguides.ems.Exception.ResourceNotFoundException;
 import com.javaguides.ems.Repository.EmployeeRepository;
 import com.javaguides.ems.Service.EmployeeService;
 import com.javaguides.ems.mapper.EmployeeMapper;
@@ -21,4 +22,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         return EmployeeMapper.mapToEmployeeDTO(savedEmployee);
 
     }
+    @Override
+    public EmployeeDTO getEmployeeId(Long employeeId) {
+       Employee employee = employeeRepository.findById(employeeId)
+        .orElseThrow(() -> new ResourceNotFoundException("Funcionário não encontrado por meio de ID"));
+    
+    return EmployeeMapper.mapToEmployeeDTO(employee);
+    }
+   
 }
