@@ -4,4 +4,6 @@ import com.javaguides.ems.DTO.EmployeeDTO;
 
 public interface EmployeeService {
     EmployeeDTO createEmployee(EmployeeDTO employeeDTO);
+
+    EmployeeDTO getEmployeeId(Long employeeId);
 }
