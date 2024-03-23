@@ -1,19 +1,19 @@
 import React from 'react'
 import { useState } from 'react';
 import { createEmployee } from '../Service/EmployeeService';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const EmployeeComponent = () => {
-
+    
+    const {id} = useParams();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-
     const [errors, setErrors] = useState(
         {
-            firstName : '',
-            lastName : '',
-            email : '',
+            firstName: '',
+            lastName: '',
+            email: '',
         }
     );
 
@@ -34,24 +34,24 @@ export const EmployeeComponent = () => {
 
     function validateForm() {
         let valid = true;
-        const errorsCopy = {... errors};
+        const errorsCopy = { ...errors };
 
-        
-        if(firstName.trim()) {
+
+        if (firstName.trim()) {
             errorsCopy.firstName = ''
         } else {
             errorsCopy.firstName = 'Campo obrigatório'
             valid = false;
         }
 
-        if(lastName.trim()) {
+        if (lastName.trim()) {
             errorsCopy.lastName = ''
         } else {
             errorsCopy.lastName = 'Campo obrigatório'
             valid = false;
         }
 
-        if(email.trim()) {
+        if (email.trim()) {
             errorsCopy.email = ''
         } else {
             errorsCopy.email = 'Campo obrigatório'
@@ -61,12 +61,18 @@ export const EmployeeComponent = () => {
         return valid;
     }
 
+    function titlePage() {
+        return id ? <h2 className='text-center'>Editar Funcionário</h2> : <h2 className='text-center'>Adicionar Funcionário</h2>;
+
+
+
+    }
+
     return (
         <div className='container'>
             <div className='row'>
                 <div className='card col-md-6 offset-md-3 offset-md-3'>
-
-                    <h2 className='text-center'>Adicionar Funcionário</h2>
+                {titlePage()}
                     <div className='card-body'>
                         <form>
                             <div className='form-group mb-2'>
