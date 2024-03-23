@@ -11,9 +11,9 @@ export const EmployeeComponent = () => {
 
     const [errors, setErrors] = useState(
         {
-            firstName : '',
-            lastName : '',
-            email : '',
+            firstName: '',
+            lastName: '',
+            email: '',
         }
     );
 
@@ -34,28 +34,17 @@ export const EmployeeComponent = () => {
 
     function validateForm() {
         let valid = true;
-        const errorsCopy = {... errors};
-    
-        if(firstName.trim()) {
-            errorsCopy.firstName = ''
-        } else {
-            errorsCopy.firstName = 'Campo obrigatório'
-            ;
-        }
+        const errorsCopy = { ...errors };
+        const required = 'Campo obrigatório';
+        if (!errorsCopy.firstName || !errorsCopy.lastName || !errorsCopy.email) valid = false;
 
-        if(lastName.trim()) {
-            errorsCopy.lastName = ''
-        } else {
-            errorsCopy.lastName = 'Campo obrigatório'
-            valid = false;
-        }
+        errorsCopy.firstName = firstName.trim() ? '' : required;
+ 
+        
+        errorsCopy.lastName = lastName.trim() ? '' : required;
 
-        if(email.trim()) {
-            errorsCopy.email = ''
-        } else {
-            errorsCopy.email = 'Campo obrigatório'
-            valid = false;
-        }
+        
+        errorsCopy.email = email.trim() ? '' : required;
 
         setErrors(errorsCopy);
         return valid;
