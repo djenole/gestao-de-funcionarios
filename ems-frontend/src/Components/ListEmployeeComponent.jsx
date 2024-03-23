@@ -16,7 +16,7 @@ export default function ListEmployeeComponent() {
     });
 
     function addNewEmployee() {
-        navigator('add-employee');
+        navigator('/add-employee');
     }
 
     return (
