@@ -35,19 +35,8 @@ export const EmployeeComponent = () => {
     function validateForm() {
         let valid = true;
         const errorsCopy = {... errors};
-        const required = 'Campo obrigatório'
-        //if (!errorsCopy.firstName || !errorsCopy.lastName || !errorsCopy.email) valid = false;
 
-        errorsCopy.firstName = firstName.trim() ? '' : required && (valid = false);
- 
-        errorsCopy.lastName = lastName.trim() ? '' : required && (valid = false);
-
-        errorsCopy.email = email.trim() ? '' : required && (valid = false);
-
-
-
-
-
+        
         if(firstName.trim()) {
             errorsCopy.firstName = ''
         } else {
@@ -68,7 +57,6 @@ export const EmployeeComponent = () => {
             errorsCopy.email = 'Campo obrigatório'
             valid = false;
         }
-
         setErrors(errorsCopy);
         return valid;
     }
