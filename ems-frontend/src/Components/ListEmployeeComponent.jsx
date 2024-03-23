@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react'
-import {listEmployees} from '../Service/EmployeeService'
+import React, { useEffect, useState } from 'react'
+import { listEmployees } from '../Service/EmployeeService'
 
 export default function ListEmployeeComponent() {
-    
-    const [employee, setEmployees] = useState([]);
 
+    const [employee, setEmployees] = useState([]);
 
     useEffect(() => {
         listEmployees().then((response) => {
@@ -12,30 +11,7 @@ export default function ListEmployeeComponent() {
         }).catch(error => {
             console.error(error);
         })
-    })
-    const dummyData = [
-        {
-            "id": "1",
-            "firstName": "Djenole",
-            "lastName": "Silva",
-            "email": "email@email.com"
-        },
-
-        {
-            "id": "2",
-            "firstName": "Digenole",
-            "lastName": "Souza",
-            "email": "outro@email.com"
-        },
-
-        {
-            "id": "3",
-            "firstName": "Silva",
-            "lastName": "Souza",
-            "email": "teste@email.com"
-        },
-    ]
-
+    });
 
     return (
         <div className='container'>
@@ -61,10 +37,7 @@ export default function ListEmployeeComponent() {
                             </tr>
                     )}
                 </tbody>
-
-
             </table>
-
         </div>
-    )
-}
+    );
+};
