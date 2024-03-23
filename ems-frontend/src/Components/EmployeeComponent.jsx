@@ -36,36 +36,21 @@ export const EmployeeComponent = () => {
         let valid = true;
         const errorsCopy = { ...errors };
 
+        errorsCopy.firstName = firstName.trim() ? '' : 'Campo obrigatório';
+        valid = firstName.trim() ? valid : false;
+        
+        errorsCopy.lastName = lastName.trim() ? '' : 'Campo obrigatório';
+        valid = lastName.trim() ? valid : false;
+        
+        errorsCopy.email = email.trim() ? '' : 'Campo obrigatório';
+        valid = email.trim() ? valid : false;
 
-        if (firstName.trim()) {
-            errorsCopy.firstName = ''
-        } else {
-            errorsCopy.firstName = 'Campo obrigatório'
-            valid = false;
-        }
-
-        if (lastName.trim()) {
-            errorsCopy.lastName = ''
-        } else {
-            errorsCopy.lastName = 'Campo obrigatório'
-            valid = false;
-        }
-
-        if (email.trim()) {
-            errorsCopy.email = ''
-        } else {
-            errorsCopy.email = 'Campo obrigatório'
-            valid = false;
-        }
         setErrors(errorsCopy);
         return valid;
     }
 
     function titlePage() {
         return id ? <h2 className='text-center'>Editar Funcionário</h2> : <h2 className='text-center'>Adicionar Funcionário</h2>;
-
-
-
     }
 
     return (
