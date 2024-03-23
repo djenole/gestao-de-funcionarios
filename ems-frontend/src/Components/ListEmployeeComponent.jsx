@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function ListEmployeeComponent() {
 
     const [employee, setEmployees] = useState([]);
- 
+    
     const navigator = useNavigate();
 
     useEffect(() => {
@@ -18,6 +18,7 @@ export default function ListEmployeeComponent() {
     function addNewEmployee() {
         navigator('/add-employee');
     }
+
 
     return (
         <div className='container'>
