@@ -18,8 +18,7 @@ export default function ListEmployeeComponent() {
     function addNewEmployee() {
         navigator('/add-employee');
     }
-
-
+    
     return (
         <div className='container'>
             <h2 className='text-center'>Lista de funcionários</h2>
