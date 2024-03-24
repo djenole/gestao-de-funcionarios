@@ -1,11 +1,11 @@
 import React from 'react'
-import { useState } from 'react';
-import { createEmployee } from '../Service/EmployeeService';
+import { useState, useEffect } from 'react';
+import { createEmployee, getEmployee, updateEmployee } from '../Service/EmployeeService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const EmployeeComponent = () => {
-    
-    const {id} = useParams();
+
+    const { id } = useParams();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -19,17 +19,41 @@ export const EmployeeComponent = () => {
 
     const navigator = useNavigate();
 
-    function saveEmployee(e) {
-        e.preventDefault();
-
-        if (validateForm()) {
-            const employee = { firstName, lastName, email }
-            createEmployee(employee).then((response) => {
-                console.log(response.data);
-                navigator('/employees');
+    useEffect(() => {
+        if (id) {
+            getEmployee(id).then((response) => {
+                setFirstName(response.data.firstName);
+                setLastName(response.data.lastName);
+                setEmail(response.data.email);
+            }).catch(error => {
+                console.log(error);
             })
         }
+
+    }, [id])
+
+    function savedOrUpdateEmployee(e) {
+        e.preventDefault();
+        const employee = { firstName, lastName, email }
+        if (validateForm()) {
+            if (id) {
+                updateEmployee(id, employee).then((response) => {
+                    console.log(response.data);
+                    navigator('/employees');
+                }).catch(error => {
+                    console.log(error);
+                })
+            } else {
+                createEmployee(employee).then((response) => {
+                    console.log(response.data);
+                    navigator('/employees');
+                })
+            }
+        }
+
     }
+
+
 
 
     function validateForm() {
@@ -38,10 +62,10 @@ export const EmployeeComponent = () => {
 
         errorsCopy.firstName = firstName.trim() ? '' : 'Campo obrigatório';
         valid = firstName.trim() ? valid : false;
-        
+
         errorsCopy.lastName = lastName.trim() ? '' : 'Campo obrigatório';
         valid = lastName.trim() ? valid : false;
-        
+
         errorsCopy.email = email.trim() ? '' : 'Campo obrigatório';
         valid = email.trim() ? valid : false;
 
@@ -57,7 +81,7 @@ export const EmployeeComponent = () => {
         <div className='container'>
             <div className='row'>
                 <div className='card col-md-6 offset-md-3 offset-md-3'>
-                {titlePage()}
+                    {titlePage()}
                     <div className='card-body'>
                         <form>
                             <div className='form-group mb-2'>
@@ -98,7 +122,7 @@ export const EmployeeComponent = () => {
                                 />
                                 {errors.lastName && <div className='invalid-feedback'> {errors.lastName}</div>}
                             </div>
-                            <button className='btn btn-success' onClick={saveEmployee}>Confirmar</button>
+                            <button className='btn btn-success' onClick={savedOrUpdateEmployee}>Confirmar</button>
                         </form>
                     </div>
 
