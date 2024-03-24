@@ -36,19 +36,28 @@ export const EmployeeComponent = () => {
         e.preventDefault();
         const employee = { firstName, lastName, email }
         if (validateForm()) {
-            if (id) {
-                updateEmployee(id, employee).then((response) => {
-                    console.log(response.data);
-                    navigator('/employees');
-                }).catch(error => {
-                    console.log(error);
-                })
-            } else {
-                createEmployee(employee).then((response) => {
-                    console.log(response.data);
-                    navigator('/employees');
-                })
-            }
+            createEmployee(employee).then((response) => {
+                console.log(response.data);
+                navigator('/employees');
+            }).catch(error => {
+                console.log(error);
+            })
+
+        }
+    }
+
+    function updateEmployeeSelected(e) {
+        e.preventDefault()
+        const employee = { firstName, lastName, email }
+
+        if (validateForm()) {
+            updateEmployee(id, employee).then((response) => {
+                console.log(response.data);
+                navigator('/employees');
+            }).catch(error => {
+                console.log(error);
+            })
+
         }
 
     }
@@ -122,7 +131,7 @@ export const EmployeeComponent = () => {
                                 />
                                 {errors.lastName && <div className='invalid-feedback'> {errors.lastName}</div>}
                             </div>
-                            <button className='btn btn-success' onClick={savedOrUpdateEmployee}>Confirmar</button>
+                            <button className='btn btn-success' onClick={id ? updateEmployeeSelected : savedOrUpdateEmployee}>Confirmar</button>
                         </form>
                     </div>
 
