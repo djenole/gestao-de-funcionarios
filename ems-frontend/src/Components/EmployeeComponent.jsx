@@ -42,7 +42,6 @@ export const EmployeeComponent = () => {
             }).catch(error => {
                 console.log(error);
             })
-
         }
     }
 
@@ -57,13 +56,9 @@ export const EmployeeComponent = () => {
             }).catch(error => {
                 console.log(error);
             })
-
         }
 
     }
-
-
-
 
     function validateForm() {
         let valid = true;
