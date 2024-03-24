@@ -17,6 +17,8 @@ export const EmployeeComponent = () => {
         }
     );
 
+    const employee = { firstName, lastName, email }
+
     const navigator = useNavigate();
 
     useEffect(() => {
@@ -34,7 +36,6 @@ export const EmployeeComponent = () => {
 
     function savedEmployee(e) {
         e.preventDefault();
-        const employee = { firstName, lastName, email }
         if (validateForm()) {
             createEmployee(employee).then((response) => {
                 console.log(response.data);
@@ -47,8 +48,6 @@ export const EmployeeComponent = () => {
 
     function updateEmployeeSelected(e) {
         e.preventDefault()
-        const employee = { firstName, lastName, email }
-
         if (validateForm()) {
             updateEmployee(id, employee).then((response) => {
                 console.log(response.data);
