@@ -26,12 +26,4 @@ public class Employee {
 
     @Column(name = "email_id", nullable = false, unique = true)
     private String email;
-
-    public Employee(EmployeeDTO data) {
-
-        this.firstName = data.getFirstName();
-        this.lastName = data.getLastName();
-        this.email = data.getEmail();
-
-    }
 }
