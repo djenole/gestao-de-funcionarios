@@ -1,46 +1,43 @@
-import React, {useEffect, useState} from 'react'
-import {listEmployees} from '../Service/EmployeeService'
-
+import React, { useEffect, useState } from 'react'
+import { deleteEmployee, listEmployees } from '../Service/EmployeeService'
+import { useNavigate } from 'react-router-dom';
 export default function ListEmployeeComponent() {
-    
-    const [employee, setEmployees] = useState([]);
 
+    const [employee, setEmployees] = useState([]);
+    
+    const navigator = useNavigate();
 
     useEffect(() => {
+        getAllEmployee();
+    });
+
+    function getAllEmployee() {
         listEmployees().then((response) => {
             setEmployees(response.data);
         }).catch(error => {
             console.error(error);
         })
-    })
-    const dummyData = [
-        {
-            "id": "1",
-            "firstName": "Djenole",
-            "lastName": "Silva",
-            "email": "email@email.com"
-        },
+    }
 
-        {
-            "id": "2",
-            "firstName": "Digenole",
-            "lastName": "Souza",
-            "email": "outro@email.com"
-        },
+    function addNewEmployee() {
+        navigator('/add-employee');
+    }
+    
+    function updateEmployee(id) {
+        navigator(`/edit-employee/${id}`);
+    }
 
-        {
-            "id": "3",
-            "firstName": "Silva",
-            "lastName": "Souza",
-            "email": "teste@email.com"
-        },
-    ]
-
-
+    function removeEmployee(id) {
+        deleteEmployee(id).then((response) => {
+            getAllEmployee();
+        }).catch(error => {
+            console.error(error)
+        })
+    }
     return (
         <div className='container'>
             <h2 className='text-center'>Lista de funcionários</h2>
-
+            <button className='btn btn-primary mb-2' onClick={addNewEmployee}>+ Funcionário</button>
             <table className='table table-striped table-bordered'>
                 <thead>
                     <tr>
@@ -48,6 +45,7 @@ export default function ListEmployeeComponent() {
                         <th>Primeiro nome</th>
                         <th>Segundo nome</th>
                         <th>Email</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,13 +56,14 @@ export default function ListEmployeeComponent() {
                                 <td>{employee.firstName}</td>
                                 <td>{employee.lastName}</td>
                                 <td>{employee.email}</td>
+                                <td>
+                                    <button className='btn btn-info' onClick={() => updateEmployee(employee.id)}>Editar</button>
+                                    <button className='btn btn-danger' onClick={() => removeEmployee(employee.id)}>Deletar</button>
+                                </td>
                             </tr>
                     )}
                 </tbody>
-
-
             </table>
-
         </div>
-    )
-}
+    );
+};
