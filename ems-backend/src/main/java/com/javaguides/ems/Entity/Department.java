@@ -1,5 +1,6 @@
 package com.javaguides.ems.Entity;
 
+import com.javaguides.ems.DTO.DepartmentDTO;
 import com.javaguides.ems.DTO.EmployeeDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,23 +8,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name = "Employees")
-public class Employee {
+@Table(name = "departments")
+public class Department {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "department_name")
+    private String departmentName;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "department_description")
+    private String departmentDescription;
 
-    @Column(name = "email_id", nullable = false, unique = true)
-    private String email;
 }
