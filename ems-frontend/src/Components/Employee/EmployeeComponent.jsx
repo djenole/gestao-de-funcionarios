@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { createEmployee, getEmployee, updateEmployee } from '../Service/EmployeeService';
+import { createEmployee, getEmployee, updateEmployee } from '../../Service/EmployeeService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const EmployeeComponent = () => {

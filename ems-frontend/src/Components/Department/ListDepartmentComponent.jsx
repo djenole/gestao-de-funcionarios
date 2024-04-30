@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { deleteDepartment, listDepartment } from '../Service/DepartmentService';
+import { deleteDepartment, listDepartment } from '../../Service/DepartmentService';
 
 
 export default function ListDepartmentComponent() {
