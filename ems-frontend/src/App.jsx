@@ -1,11 +1,11 @@
 
 import './App.css'
-import { DepartmentComponent } from './Components/DepartmentComponent'
-import { EmployeeComponent } from './Components/EmployeeComponent'
+import { DepartmentComponent } from './Components/Department/DepartmentComponent'
+import { EmployeeComponent } from './Components/Employee/EmployeeComponent'
 import { FooterComponent } from './Components/FooterComponent'
 import { HeaderComponent } from './Components/HeaderComponent'
-import ListDepartmentComponent from './Components/ListDepartmentComponent'
-import ListEmployeeComponent from './Components/ListEmployeeComponent'
+import ListDepartmentComponent from './Components/Department/ListDepartmentComponent'
+import ListEmployeeComponent from './Components/Employee/ListEmployeeComponent'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 function App() {
 
